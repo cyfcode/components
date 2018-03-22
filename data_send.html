@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<div id="nav">
+    {{msg}}
+    <n></n>
+</div>
+</body>
+<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    let n = {
+        template:'<div>zidasdas</div>'
+    };
+    let nav = Vue({
+        el:'#nav',
+        data:{
+           msg:200
+        },
+        components:{
+            n
+        }
+    })
+</script>
+</html>

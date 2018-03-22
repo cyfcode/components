@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>参数路由</title>
+</head>
+<body>
+<div id="nav">
+    <router-link to="{name:'pro',params:{c:1,b:2}}">商品1</router-link>
+    <router-link to="/article/2">商品2</router-link>
+    <router-link to="/article/3">商品3</router-link>
+    <router-link to="/article"></router-link>
+    <router-view></router-view>
+</div>
+</body>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script src="../node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+    let article = {
+        template:'<div>第 {{$route.params.c}} 篇文章</div>',
+        watch:{
+            $route(){
+                alert('bianl');
+            }
+        }
+    };
+    let routes = [
+        {
+            path:'/article/:c/:b',//article/123535路径参数为动态,加:为动态
+            component:article,
+            name:'pro'
+        }
+    ];
+    let router = new VueRouter({
+        routes
+    });
+    let nav = new Vue({
+        el:'#nav',
+        router
+    })
+</script>
+</html>

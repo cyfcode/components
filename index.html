@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+<div id="nav">
+    <pannel-header></pannel-header>
+    <pannel-body></pannel-body>
+    <footer2>
+        <footer1></footer1>
+    </footer2>
+</div>
+</body>
+<script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    Vue.component('pannel-header',{//头部全局组件
+       template:'<ul class="nav nav-tabs">\n' +
+       '  <li role="presentation" class="active"><a href="#">Home</a></li>\n' +
+       '  <li role="presentation"><a href="#">Profile</a></li>\n' +
+       '  <li role="presentation"><a href="#">{{name}}</a></li>\n' +
+       '</ul>',
+        data(){
+           return num;
+        }
+    });
+    let num = {
+      name:'zhang'
+    };
+    Vue.component('pannel-body',{
+        template:'<ul class="nav nav-tabs">\n' +
+        '  <li role="presentation" class="active"><a href="#">Home</a></li>\n' +
+        '  <li role="presentation"><a href="#">Profile</a></li>\n' +
+        '  <li role="presentation"><a href="#">{{name}}</a></li>\n' +
+        '</ul>',
+        data(){
+            return num;
+        }
+    });
+    let footer1 = {//局部body组件
+        template:'<ol class="breadcrumb">\n' +
+        '  <li><a href="#">Home</a></li>\n' +
+        '  <li><a href="#">Library</a></li>\n' +
+        '  <li class="active" @click="fn">{{name}}</li>\n' +
+        '</ol>',
+        data(){
+            return num
+        },
+        methods:{
+            fn(){
+                this.name = this.$watch();
+            }
+        }
+    };
+    let footer2 = {//局部body组件
+        template:'<ol class="breadcrumb">\n' +
+        '  <li><a href="#">Home<footer1></footer1></a></li>\n' +
+        '  <li><a href="#">Library</a></li>\n' +
+        '  <li class="active" @click="fn">{{name}}</li>\n' +
+        '</ol>',
+        components:{
+            footer1//组件注入
+        },
+        data(){
+            return num
+        },
+        methods:{
+            fn(){
+                this.name = ''
+            }
+        }
+    };
+    let nav = new Vue({
+        el:'#nav',
+        components:{
+            footer1,
+            footer2
+        },
+        data:{
+            a:'center'
+        }
+    })
+</script>
+</html>

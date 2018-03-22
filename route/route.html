@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="nav">
+    <router-link to="/home" tag="button">首页</router-link>
+    <router-view to="/list" tag="button">列表页</router-view>
+</div>
+</body>
+<script src="../node_modules/vue/dist/vue.js"></script>
+<script src="../node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+    let myheader = {
+      template:'<div>首页</div>'
+    };
+    let mybody = {
+      template:'<div>列表页</div>'
+    };
+    let routes = [
+        {
+            path:'/home',
+            component:myheader
+        },
+        {
+            path:'/list',
+            component:mybody
+        }
+    ];
+    let router = new VueRouter({
+        /*mode:'history',*///h5模式上线用
+        routes:routes,//将路径与组件挂载到routes
+        linkActiveClass:'active'
+    });
+    let nav = new Vue({
+        el:'#nav',
+        router:router,//将路径注册到实例
+    })
+</script>
+</html>
